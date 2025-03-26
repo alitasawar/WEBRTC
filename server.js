@@ -13,14 +13,16 @@ app.use(express.static(__dirname))
 
 // const key = fs.readFileSync('cert.key');
 // const cert = fs.readFileSync('cert.crt');
-const domain='webcall-git-fstworkngrtc-smrtscientist-gmailcoms-projects.vercel.app'
+// const domain='webcall-git-fstworkngrtc-smrtscientist-gmailcoms-projects.vercel.app'
 
-const key = fs.readFileSync('/etc/letsencrypt/live/'+domain+'/privkey.pem');
-const cert = fs.readFileSync('/etc/letsencrypt/live/'+domain+'/fullchain.pem');
+// const key = fs.readFileSync('/etc/letsencrypt/live/'+domain+'/privkey.pem');
+// const cert = fs.readFileSync('/etc/letsencrypt/live/'+domain+'/fullchain.pem');
 
 //we changed our express setup so we can use https
 //pass the key and cert to createServer on https
-const expressServer = https.createServer({key, cert}, app);
+
+// const expressServer = https.createServer({key, cert}, app);
+
 //create our socket.io server... it will listen to our express port
 const io = socketio(expressServer,{
     cors: {
