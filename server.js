@@ -24,7 +24,8 @@ app.use(express.static(__dirname))
 // const expressServer = https.createServer({key, cert}, app);
 
 //create our socket.io server... it will listen to our express port
-const io = socketio(expressServer,{
+// const io = socketio(expressServer,{
+const io = socketio(app,{
     cors: {
         origin: [
             "https://localhost",
