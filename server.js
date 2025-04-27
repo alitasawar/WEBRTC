@@ -44,7 +44,8 @@ const io = socketio(expressServer,{
         methods: ["GET", "POST"]
     }
 });
-expressServer.listen(8181,'0.0.0.0');
+const PORT = process.env.PORT || 8181;
+expressServer.listen(PORT,'0.0.0.0');
 
 //offers will contain {}
 const offers = [
