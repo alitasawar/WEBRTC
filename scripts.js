@@ -1,10 +1,21 @@
 const userName = "Rob-"+Math.floor(Math.random() * 100000)
 const password = "x";
 document.querySelector('#user-name').innerHTML = userName;
+
+
+
+async function getNgrokUrl() {
+    const x=await fetch('http://localhost:4040/api/tunnels')
+    const y=await x.json()
+    let data = y.tunnels.find(t => t.proto === 'https')
+    return data.public_url
+}
+
+
 //if trying it on a phone, use this instead...
-const socket = io.connect('https://webcall-git-fstworkngrtc-smrtscientist-gmailcoms-projects.vercel.app:3000/',{
-// const socket = io.connect('https://192.168.10.13:8181/',{
-// const socket = io.connect('https://localhost:8181/',{
+// const socket = io.connect('https://webcall-git-fstworkngrtc-smrtscientist-gmailcoms-projects.vercel.app:3000/',{
+const socket = io.connect('https://192.168.100.8:8181/',{
+// const socket = io.connect(getNgrokUrl(),{
     auth: {
         userName,password
     }

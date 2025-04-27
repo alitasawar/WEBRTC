@@ -15,6 +15,9 @@ app.use(express.static(__dirname))
 // const cert = fs.readFileSync('cert.crt');
 // const domain='webcall-git-fstworkngrtc-smrtscientist-gmailcoms-projects.vercel.app'
 
+// const key = fs.readFileSync('cert.key');
+// const cert = fs.readFileSync('cert.crt');
+
 // const key = fs.readFileSync('/etc/letsencrypt/live/'+domain+'/privkey.pem');
 // const cert = fs.readFileSync('/etc/letsencrypt/live/'+domain+'/fullchain.pem');
 
@@ -27,15 +30,21 @@ const expressServer = https.createServer(app);
 //create our socket.io server... it will listen to our express port
 const io = socketio(expressServer,{
     cors: {
-        origin: [
-            "https://localhost",
-            'https://webcall-git-fstworkngrtc-smrtscientist-gmailcoms-projects.vercel.app',
-            'https://192.168.10.13' //if using a phone or another computer
-        ],
+        origin:(origin,callback)=>{
+            callback(null,true)
+        },
+        // [
+        //     "*",
+        //     "https://localhost",
+        //     "https://192.168.100.8",
+        //     'https://alibaba.loca.lt',
+        //     'https://webcall-git-fstworkngrtc-smrtscientist-gmailcoms-projects.vercel.app',
+        //     'https://192.168.100.8' //if using a phone or another computer
+        // ],
         methods: ["GET", "POST"]
     }
 });
-expressServer.listen(3000);
+expressServer.listen(8181,'0.0.0.0');
 
 //offers will contain {}
 const offers = [
